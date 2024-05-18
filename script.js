@@ -32,5 +32,5 @@ function calculateInverse() {
     tableHTML += "</table>";
 
     // 显示结果
-    document.getElementById('result').innerHTML = "Inverse Matrix:<br>" + tableHTML;
+    document.getElementById('result').innerHTML = "Inverse Matrix: <br>" + tableHTML;
 }
