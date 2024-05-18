@@ -23,10 +23,7 @@ table {
     margin: 0 auto; /* 水平居中 */
     border-collapse: collapse; /* 去除表格边框间的间距 */
 }
-table, th, td {
+.result-table th, .result-table td{
     border: 1px solid black; /* 添加表格边框 */
-    padding: 5px; /* 添加单元格内边距 */
-}
-.input-table {
-    margin: 0 auto; /* 水平居中 */
+    padding: 15px; /* 添加单元格内边距 */
 }

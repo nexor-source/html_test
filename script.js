@@ -1,3 +1,4 @@
+// script.js
 function calculateInverse() {
     // 获取矩阵元素的值
     var a11 = parseFloat(document.getElementById('a11').value);
@@ -20,17 +21,17 @@ function calculateInverse() {
         [(a21 * a32 - a22 * a31) / determinant, (a12 * a31 - a11 * a32) / determinant, (a11 * a22 - a12 * a21) / determinant]
     ];
 
-    // 生成表格形式的逆矩阵
-    var tableHTML = "<table class='result-table'>";
+    // 构建结果表格
+    var resultTable = "<table class='result-table'>";
     for (var i = 0; i < inverseMatrix.length; i++) {
-        tableHTML += "<tr>";
+        resultTable += "<tr>";
         for (var j = 0; j < inverseMatrix[i].length; j++) {
-            tableHTML += "<td>" + inverseMatrix[i][j].toFixed(2) + "</td>";
+            resultTable += "<td>" + inverseMatrix[i][j].toFixed(2) + "</td>"; // 保留两位小数
         }
-        tableHTML += "</tr>";
+        resultTable += "</tr>";
     }
-    tableHTML += "</table>";
+    resultTable += "</table>";
 
-    // 显示结果
-    document.getElementById('result').innerHTML = "Inverse Matrix: <br>" + tableHTML;
+    // 显示结果表格
+    document.getElementById('result').innerHTML = "Inverse Matrix: <br>" + resultTable;
 }
