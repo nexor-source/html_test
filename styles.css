@@ -1,29 +1,39 @@
-body {
-    font-family: Arial, sans-serif;
+.board {
+    display: grid;
+    grid-template-columns: repeat(13, 30px);
+    gap: 1px;
+    background-color: #ccc;
+    border: 1px solid #999;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: #cfcfcf;
+    border: 1px solid #000000;
     text-align: center;
-}
-input[type="number"] {
-    padding: 8px;
-    margin: 5px;
-    width: 50px;
-}
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+    line-height: 30px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-button:hover {
-    background-color: #0056b3;
+
+.cell.clicked {
+    background-color: #fff;
 }
-/* styles.css */
-table {
-    margin: 0 auto; /* 水平居中 */
-    border-collapse: collapse; /* 去除表格边框间的间距 */
+
+.cell.mine {
+    background-color: rgb(213, 92, 92);
+    color: white;
 }
-.result-table th, .result-table td{
-    border: 1px solid black; /* 添加表格边框 */
-    padding: 15px; /* 添加单元格内边距 */
+
+.cell:hover {
+    background-color: lightgray;
 }
