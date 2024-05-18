@@ -26,7 +26,7 @@ function calculateInverse() {
     for (var i = 0; i < inverseMatrix.length; i++) {
         resultTable += "<tr>";
         for (var j = 0; j < inverseMatrix[i].length; j++) {
-            resultTable += "<td>" + inverseMatrix[i][j] + "</td>";
+            resultTable += "<td>" + inverseMatrix[i][j].toFixed(2) + "</td>"; // 保留两位小数
         }
         resultTable += "</tr>";
     }
