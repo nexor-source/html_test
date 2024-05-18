@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Two Numbers</title>
+    <title>Calculate Inverse of 3x3 Matrix</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
         input[type="number"] {
             padding: 8px;
             margin: 5px;
-            width: 150px;
+            width: 50px;
         }
         button {
             padding: 10px 20px;
@@ -28,21 +28,56 @@
     </style>
 </head>
 <body>
-    <h2>Add Two Numbers</h2>
-    <input type="number" id="num1" placeholder="Enter first number">
-    <br>
-    <input type="number" id="num2" placeholder="Enter second number">
-    <br>
-    <button onclick="addNumbers()">Add</button>
+    <h2>Calculate Inverse of 3x3 Matrix</h2>
+    <table>
+        <tr>
+            <td><input type="number" id="a11" placeholder="a11"></td>
+            <td><input type="number" id="a12" placeholder="a12"></td>
+            <td><input type="number" id="a13" placeholder="a13"></td>
+        </tr>
+        <tr>
+            <td><input type="number" id="a21" placeholder="a21"></td>
+            <td><input type="number" id="a22" placeholder="a22"></td>
+            <td><input type="number" id="a23" placeholder="a23"></td>
+        </tr>
+        <tr>
+            <td><input type="number" id="a31" placeholder="a31"></td>
+            <td><input type="number" id="a32" placeholder="a32"></td>
+            <td><input type="number" id="a33" placeholder="a33"></td>
+        </tr>
+    </table>
+    <button onclick="calculateInverse()">Calculate Inverse</button>
     <br>
     <div id="result"></div>
 
     <script>
-        function addNumbers() {
-            var num1 = parseFloat(document.getElementById('num1').value);
-            var num2 = parseFloat(document.getElementById('num2').value);
-            var result = num1 + num2;
-            document.getElementById('result').innerHTML = "Result: " + result;
+        function calculateInverse() {
+            // 获取矩阵元素的值
+            var a11 = parseFloat(document.getElementById('a11').value);
+            var a12 = parseFloat(document.getElementById('a12').value);
+            var a13 = parseFloat(document.getElementById('a13').value);
+            var a21 = parseFloat(document.getElementById('a21').value);
+            var a22 = parseFloat(document.getElementById('a22').value);
+            var a23 = parseFloat(document.getElementById('a23').value);
+            var a31 = parseFloat(document.getElementById('a31').value);
+            var a32 = parseFloat(document.getElementById('a32').value);
+            var a33 = parseFloat(document.getElementById('a33').value);
+            
+            // 计算矩阵的行列式
+            var determinant = a11 * (a22 * a33 - a23 * a32) - a12 * (a21 * a33 - a23 * a31) + a13 * (a21 * a32 - a22 * a31);
+
+            // 计算逆矩阵
+            var inverseMatrix = [
+                [(a22 * a33 - a23 * a32) / determinant, (a13 * a32 - a12 * a33) / determinant, (a12 * a23 - a13 * a22) / determinant],
+                [(a23 * a31 - a21 * a33) / determinant, (a11 * a33 - a13 * a31) / determinant, (a13 * a21 - a11 * a23) / determinant],
+                [(a21 * a32 - a22 * a31) / determinant, (a12 * a31 - a11 * a32) / determinant, (a11 * a22 - a12 * a21) / determinant]
+            ];
+
+            // 显示结果
+            document.getElementById('result').innerHTML = "Inverse Matrix: <br>" +
+                inverseMatrix[0].join(' ') + "<br>" +
+                inverseMatrix[1].join(' ') + "<br>" +
+                inverseMatrix[2].join(' ');
         }
     </script>
 </body>
