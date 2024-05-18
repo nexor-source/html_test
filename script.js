@@ -1,10 +1,23 @@
 const board = document.querySelector('.board');
-const width = 13;
-const height = 13;
-const totalMines = 22;
+const width = Math.floor(Math.random() * 12) + 3;
+const height = Math.floor(Math.random() * 12) + 3;
+const totalMines = Math.floor(width * height * Math.random() / 4);
 const mines = [];
 let remains = width*height-totalMines;
 const adjacentOffsets = [-1, 0, 1];
+
+// 将生成的宽度应用到 CSS 样式中
+const styleElement = document.createElement('style');
+styleElement.textContent = `
+    .board {
+        display: grid;
+        grid-template-columns: repeat(${width}, 30px);
+        gap: 1px;
+        background-color: #ccc;
+        border: 1px solid #999;
+    }
+`;
+document.head.appendChild(styleElement);
 
 // Generate empty game board
 const gameBoard = [];
@@ -71,13 +84,19 @@ function handleCellClick(event) {
         const mineCount = countAdjacentMines(row, col);
         if (mineCount > 0) {
             cell.textContent = mineCount;
+            cell.classList.add(`count-${mineCount}`); // Apply color class based on mineCount
         } else {
             cell.textContent = '';
         }
         cell.classList.add('clicked');
-        remains--;
-        if (remains === 0){
-            alert("Congratulations! You won the game!");
+        if (--remains === 0){
+            // Prompt game over message and ask for reload
+            setTimeout(() => {
+                const reload = confirm('Congratulations! You won the game! Would you like to restart?');
+                if (reload) {
+                    window.location.reload();
+                }
+            }, 360);
         }
         if (mineCount === 0) {
             openAdjacentCells(row, col);
@@ -138,4 +157,12 @@ function gameOver() {
     cells.forEach(cell => {
         cell.removeEventListener('contextmenu', handleRightClick);
     });
+
+    // Prompt game over message and ask for reload
+    setTimeout(() => {
+        const reload = confirm('Game Over! Would you like to play again?');
+        if (reload) {
+            window.location.reload();
+        }
+    }, 500);
 }
